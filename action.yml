@@ -1,0 +1,18 @@
+name: 'action-example'
+description: 'Core3 action template'
+author: 'Alex Shemshurenko'
+inputs:
+  name_param:
+    required: false
+    description: 'your name'
+    default: 'Nameless'
+  fail_on_error:
+    required: false
+    description: 'Should action fail on error'
+    default: false
+runs:
+  using: 'node16'
+  main: 'dist/index.js'
+branding:
+  icon: upload-cloud
+  color: blue

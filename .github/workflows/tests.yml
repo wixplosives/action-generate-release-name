@@ -1,0 +1,28 @@
+name: 'test'
+on: push
+
+jobs:
+  run-build-and-test: # make sure build/ci work properly
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: |
+          npm ci
+      - run: |
+          npm run test
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+  test: # make sure the action works on a clean machine without building
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ./
+        id: run-the-action
+        with:
+          name_param: 'Yosi'
+      - name:
+        if: ${{ steps.run-the-action.outputs.greeting  != 'Yosi => test' }}
+        uses: actions/github-script@v3
+        with:
+          script: |
+            core.setFailed('Output mismatch "${{ steps.run-the-action.outputs.greeting }}" != "Yosi => test"')
