@@ -1,14 +1,18 @@
 import { expect } from 'chai';
-import { generateGreeting } from '../src/helpers';
+import { generateReleaseName } from '../src/helpers';
 
-describe('generateGreeting()', () => {
-    it('generate greeting', async () => {
-        const testName = 'Yosi';
-        const testJobName = 'test-job';
-        const greeting = await generateGreeting({
-            name: testName,
-            jobName: testJobName,
+describe('generateReleaseName', () => {
+    it('generate release name', () => {
+        const baseName = 'my-build';
+        const pkgJsonPath = './test/fixtures/package.json';
+        const branchName = 'some/branch';
+        const sha = 'af8798a';
+        const result = generateReleaseName({
+            baseName,
+            pkgJsonPath,
+            branchName,
+            sha,
         });
-        expect(greeting).to.equal(`${testName} => ${testJobName}`);
+        expect(result).to.equal(`${baseName}-0.0.1-${branchName}-${sha}`);
     });
 });

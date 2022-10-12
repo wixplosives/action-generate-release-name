@@ -1,6 +1,6 @@
 {
   "name": "action-generate-release-name",
-  "version": "0.0.2",
+  "version": "0.0.1",
   "private": true,
   "description": "Github action generate release name",
   "main": "lib/main.js",

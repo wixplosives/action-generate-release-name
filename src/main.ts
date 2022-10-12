@@ -1,24 +1,18 @@
 import * as core from '@actions/core';
-import { generateGreeting } from './helpers';
-import { context } from '@actions/github';
+import { generateReleaseName } from './helpers';
 
-async function run(): Promise<void> {
-    const nameParam = core.getInput('name_param');
-    const greeting = await generateGreeting({
-        name: nameParam,
-        jobName: context.job,
+function run(): void {
+    const baseName = core.getInput('base_name');
+    const pkgJsonPath = core.getInput('pkg_json_path');
+    const branchName = core.getInput('branch_name');
+    const sha = core.getInput('sha');
+    const nameResult = generateReleaseName({
+        baseName,
+        pkgJsonPath,
+        branchName,
+        sha,
     });
-    core.setOutput('greeting', greeting);
+    core.setOutput('result', nameResult);
 }
 
-// eslint-disable-next-line github/no-then
-run().catch((e) => {
-    const fail = (core.getInput('fail_on_error') || 'false').toUpperCase() === 'TRUE';
-    // eslint-disable-next-line no-console
-    console.error(e);
-    if (fail) {
-        core.setFailed(e.message);
-    } else {
-        core.info(e.message);
-    }
-});
+run();

@@ -1,19 +1,18 @@
-export interface IExampleInterface {
-    name: string;
-    jobName: string;
+import fs from '@file-services/node';
+
+export interface IParamsInterface {
+    baseName: string;
+    pkgJsonPath: string;
+    branchName: string;
+    sha: string;
 }
 
-const wait = async (milliseconds: number): Promise<string> => {
-    return new Promise((resolve) => {
-        if (isNaN(milliseconds)) {
-            throw new Error('milliseconds not a number');
-        }
-        setTimeout(() => resolve('done!'), milliseconds);
-    });
-};
-
-export const generateGreeting = async ({ name, jobName }: IExampleInterface): Promise<string> => {
-    await wait(100);
-    const result = `${name} => ${jobName}`;
+export const generateReleaseName = ({ baseName, pkgJsonPath, branchName, sha }: IParamsInterface): string => {
+    const fullPath = `${fs.resolve(fs.join(process.cwd(), pkgJsonPath))}`;
+    // eslint-disable-next-line import/no-dynamic-require, @typescript-eslint/no-var-requires
+    const version = (require(fullPath) as { version: string }).version;
+    const name = `${baseName}-${version}-${branchName}-${sha}`;
+    const re = '///gi';
+    const result = name.replace(re, '_');
     return result;
 };

@@ -19,10 +19,13 @@ jobs:
       - uses: ./
         id: run-the-action
         with:
-          name_param: 'Yosi'
+          base_name: 'my-base-name'
+          pkg_json_path: 'test/fixtures/package.json'
+          branch_name: 'branch-name'
+          sha: ${{github.sha}}
       - name:
-        if: ${{ steps.run-the-action.outputs.greeting  != 'Yosi => test' }}
+        if: ${{ steps.run-the-action.outputs.result  != 'my-base-name-0.0.1-branch-name-${{github.sha}}' }}
         uses: actions/github-script@v3
         with:
           script: |
-            core.setFailed('Output mismatch "${{ steps.run-the-action.outputs.greeting }}" != "Yosi => test"')
+            core.setFailed('failed to generate result name correctly')
