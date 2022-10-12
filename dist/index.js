@@ -17,8 +17,7 @@ const generateReleaseName = ({ baseName, pkgJsonPath, branchName, sha }) => {
     // eslint-disable-next-line import/no-dynamic-require, @typescript-eslint/no-var-requires
     const version = require(fullPath).version;
     const name = `${baseName}-${version}-${branchName}-${sha}`;
-    const re = '///gi';
-    const result = name.replace(re, '_');
+    const result = name.replace(/[/]/g, '_');
     return result;
 };
 exports.generateReleaseName = generateReleaseName;

@@ -5,7 +5,7 @@ describe('generateReleaseName', () => {
     it('generate release name', () => {
         const baseName = 'my-build';
         const pkgJsonPath = './test/fixtures/package.json';
-        const branchName = 'some/branch';
+        const branchName = 'some-branch';
         const sha = 'af8798a';
         const result = generateReleaseName({
             baseName,
@@ -14,5 +14,18 @@ describe('generateReleaseName', () => {
             sha,
         });
         expect(result).to.equal(`${baseName}-0.0.1-${branchName}-${sha}`);
+    });
+    it('generate release name with slashes', () => {
+        const baseName = 'my-build';
+        const pkgJsonPath = './test/fixtures/package.json';
+        const branchName = 'some/branch';
+        const sha = 'af8798a';
+        const result = generateReleaseName({
+            baseName,
+            pkgJsonPath,
+            branchName,
+            sha,
+        });
+        expect(result).to.equal(`${baseName}-0.0.1-some_branch-${sha}`);
     });
 });
