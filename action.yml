@@ -1,15 +1,19 @@
-name: 'action-example'
-description: 'Core3 action template'
+name: 'action-generate-release-name'
+description: 'Generate release name'
 author: 'Alex Shemshurenko'
 inputs:
-  name_param:
-    required: false
-    description: 'your name'
-    default: 'Nameless'
-  fail_on_error:
-    required: false
-    description: 'Should action fail on error'
-    default: false
+  base_name:
+    required: true
+    description: 'basename for the release'
+  pkg_json_path: 
+    required: true
+    description: 'path to package.json of the electron package'
+  branch_name: 
+    required: true
+    description: 'branch name'
+  sha: 
+    required: true
+    description: 'sha of the commit'  
 runs:
   using: 'node16'
   main: 'dist/index.js'
