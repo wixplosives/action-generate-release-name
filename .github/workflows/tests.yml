@@ -20,7 +20,7 @@ jobs:
         id: run-the-action
         with:
           base_name: 'my-base-name'
-          pkg_json_path: '../test/fixtures/package.json'
+          pkg_json_path: 'test/fixtures/package.json'
           branch_name: 'branch-name'
           sha: ${{github.sha}}
       - run: echo ${{ steps.run-the-action.outputs.result }}     
