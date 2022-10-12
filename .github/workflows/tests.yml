@@ -40,7 +40,7 @@ jobs:
           branch_name: 'branch-name/with-slash'
           sha: 123abf
       - name:
-        if: ${{ steps.run-the-action-2.outputs.result != '0.0.1-my-base-name-branch-name_with-slash-123abf' }}
+        if: ${{ steps.run-the-action-2.outputs.result != '0.0.1-my-base-name-branch-name-with-slash-123abf' }}
         uses: actions/github-script@v3
         with:
           script: |
