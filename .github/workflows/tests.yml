@@ -24,7 +24,7 @@ jobs:
           branch_name: 'branch-name'
           sha: 123abf
       - name:
-        if: ${{ 'steps.run-the-action.outputs.result' != 'my-base-name-0.0.1-branch-name-123abf' }}
+        if: ${{ steps.run-the-action.outputs.result != my-base-name-0.0.1-branch-name-123abf }}
         uses: actions/github-script@v3
         with:
           script: |
