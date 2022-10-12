@@ -13,7 +13,7 @@ describe('generateReleaseName', () => {
             branchName,
             sha,
         });
-        expect(result).to.equal(`${baseName}-0.0.1-${branchName}-${sha}`);
+        expect(result).to.equal(`0.0.1-${baseName}--${branchName}-${sha}`);
     });
     it('generate release name with slashes', () => {
         const baseName = 'my-build';
@@ -26,7 +26,7 @@ describe('generateReleaseName', () => {
             branchName,
             sha,
         });
-        expect(result).to.equal(`${baseName}-0.0.1-some-branch-${sha}`);
+        expect(result).to.equal(`0.0.1-${baseName}--some-branch-${sha}`);
     });
     it('generate release name with under line', () => {
         const baseName = 'my-build';
@@ -39,6 +39,6 @@ describe('generateReleaseName', () => {
             branchName,
             sha,
         });
-        expect(result).to.equal(`${baseName}-0.0.1-some-branch-under-${sha}`);
+        expect(result).to.equal(`0.0.1-${baseName}-some-branch-under-${sha}`);
     });
 });

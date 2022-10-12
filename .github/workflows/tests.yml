@@ -27,11 +27,11 @@ jobs:
           branch_name: 'branch-name'
           sha: 123abf
       - name:
-        if: ${{ steps.run-the-action.outputs.result != 'my-base-name-0.0.1-branch-name-123abf' }}
+        if: ${{ steps.run-the-action.outputs.result != '0.0.1-my-base-name-branch-name-123abf' }}
         uses: actions/github-script@v3
         with:
           script: |
-            core.setFailed('failed to generate result name correctly ${{steps.run-the-action.outputs.result}} != my-base-name-0.0.1-branch-name-123abf')
+            core.setFailed('failed to generate result name correctly ${{steps.run-the-action.outputs.result}} != 0.0.1-my-base-name-branch-name-123abf')
       - uses: ./
         id: run-the-action-2
         with:
@@ -40,8 +40,8 @@ jobs:
           branch_name: 'branch-name/with-slash'
           sha: 123abf
       - name:
-        if: ${{ steps.run-the-action-2.outputs.result != 'my-base-name-0.0.1-branch-name_with-slash-123abf' }}
+        if: ${{ steps.run-the-action-2.outputs.result != '0.0.1-my-base-name-branch-name_with-slash-123abf' }}
         uses: actions/github-script@v3
         with:
           script: |
-            core.setFailed('failed to generate result name correctly ${{steps.run-the-action.outputs.result}} != my-base-name-0.0.1-branch-name-with-slash-123abf')
+            core.setFailed('failed to generate result name correctly ${{steps.run-the-action.outputs.result}} != 0.0.1-my-base-name-branch-name-with-slash-123abf')
