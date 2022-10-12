@@ -23,6 +23,7 @@ jobs:
           pkg_json_path: '../test/fixtures/package.json'
           branch_name: 'branch-name'
           sha: ${{github.sha}}
+      - run: echo ${{ steps.run-the-action.outputs.result }}     
       - name:
         if: ${{ steps.run-the-action.outputs.result  != 'my-base-name-0.0.1-branch-name-${{github.sha}}' }}
         uses: actions/github-script@v3
