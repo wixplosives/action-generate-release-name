@@ -44,4 +44,4 @@ jobs:
         uses: actions/github-script@v3
         with:
           script: |
-            core.setFailed('failed to generate result name correctly ${{steps.run-the-action.outputs.result}} != my-base-name-0.0.1-branch-name_with-slash-123abf')
+            core.setFailed('failed to generate result name correctly ${{steps.run-the-action.outputs.result}} != my-base-name-0.0.1-branch-name-with-slash-123abf')
