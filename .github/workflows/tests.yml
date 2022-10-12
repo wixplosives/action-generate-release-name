@@ -33,14 +33,14 @@ jobs:
           script: |
             core.setFailed('failed to generate result name correctly ${{steps.run-the-action.outputs.result}} != my-base-name-0.0.1-branch-name-123abf')
       - uses: ./
-        id: run-the-action
+        id: run-the-action-2
         with:
           base_name: 'my-base-name'
           pkg_json_path: 'test/fixtures/package.json'
           branch_name: 'branch-name/with-slash'
           sha: 123abf
       - name:
-        if: ${{ steps.run-the-action.outputs.result != 'my-base-name-0.0.1-branch-name_with-slash-123abf' }}
+        if: ${{ steps.run-the-action-2.outputs.result != 'my-base-name-0.0.1-branch-name_with-slash-123abf' }}
         uses: actions/github-script@v3
         with:
           script: |
