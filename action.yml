@@ -2,9 +2,6 @@ name: 'action-generate-release-name'
 description: 'Generate release name'
 author: 'Alex Shemshurenko'
 inputs:
-  base_name:
-    required: true
-    description: 'basename for the release'
   pkg_json_path: 
     required: true
     description: 'path to package.json of the electron package'

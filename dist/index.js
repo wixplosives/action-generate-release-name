@@ -12,11 +12,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.generateReleaseName = void 0;
 const node_1 = __importDefault(__nccwpck_require__(539));
-const generateReleaseName = ({ baseName, pkgJsonPath, branchName, sha }) => {
+const generateReleaseName = ({ pkgJsonPath, branchName, sha }) => {
     const fullPath = `${node_1.default.resolve(node_1.default.join(process.cwd(), pkgJsonPath))}`;
     // eslint-disable-next-line import/no-dynamic-require, @typescript-eslint/no-var-requires
     const version = require(fullPath).version;
-    const name = `${version}-${baseName}-${branchName}-${sha}`;
+    const name = `${version}-${branchName}-${sha}`;
     const result = name.replace(/[/_]/g, '-');
     return result;
 };
@@ -57,12 +57,10 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 const core = __importStar(__nccwpck_require__(186));
 const helpers_1 = __nccwpck_require__(8);
 function run() {
-    const baseName = core.getInput('base_name');
     const pkgJsonPath = core.getInput('pkg_json_path');
     const branchName = core.getInput('branch_name');
     const sha = core.getInput('sha');
     const nameResult = (0, helpers_1.generateReleaseName)({
-        baseName,
         pkgJsonPath,
         branchName,
         sha,
