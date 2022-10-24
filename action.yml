@@ -11,6 +11,10 @@ inputs:
   sha: 
     required: true
     description: 'sha of the commit'  
+  name_appendix: 
+    required: false
+    description: 'custom name appendix'
+    defualt: ''
 runs:
   using: 'node16'
   main: 'dist/index.js'
