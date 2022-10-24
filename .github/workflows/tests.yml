@@ -22,12 +22,11 @@ jobs:
       - uses: ./
         id: run-the-action
         with:
-          base_name: 'my-base-name'
           pkg_json_path: 'test/fixtures/package.json'
           branch_name: 'branch-name'
           sha: 123abf
       - name:
-        if: ${{ steps.run-the-action.outputs.result != '0.0.1-my-base-name-branch-name-123abf' }}
+        if: ${{ steps.run-the-action.outputs.result != '0.0.1-branch-name-123abf' }}
         uses: actions/github-script@v3
         with:
           script: |
@@ -35,12 +34,11 @@ jobs:
       - uses: ./
         id: run-the-action-2
         with:
-          base_name: 'my-base-name'
           pkg_json_path: 'test/fixtures/package.json'
           branch_name: 'branch-name/with-slash'
           sha: 123abf
       - name:
-        if: ${{ steps.run-the-action-2.outputs.result != '0.0.1-my-base-name-branch-name-with-slash-123abf' }}
+        if: ${{ steps.run-the-action-2.outputs.result != '0.0.1-branch-name-with-slash-123abf' }}
         uses: actions/github-script@v3
         with:
           script: |
